@@ -1,7 +1,7 @@
 
 # wg-select
 
-**wg-select** is a tool for quickly switching between WireGuard profiles.
+**wg-select** is a tool for quickly switching between WireGuard profiles. I created it because I was tired of always having to check which profile is running, then having to disable it with `sudo wg-quick down [profile]` and then `sudo wg-quick up [profile]`
 
 ## Requirements
 
@@ -20,7 +20,7 @@ sudo apt install fzf
 
 1. Clone this repository.
 2. Make sure you have installed `fzf`.
-3. Run `wg-select.sh` to start the profile selection process.
+3. Run `wg-select` to start the profile selection process.
+
 
 ``` ```
-
