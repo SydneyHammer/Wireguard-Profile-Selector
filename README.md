@@ -21,5 +21,8 @@ sudo apt install fzf
 2. Make sure you have installed `fzf`.
 3. Run `wg-select` to start the profile selection process.
 
+## License
+
+GPLv3
 
 ``` ```
