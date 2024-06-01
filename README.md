@@ -1,7 +1,6 @@
-
 # wg-select
 
-**wg-select** is a tool for quickly switching between WireGuard profiles. I created it because I was tired of always having to check which profile is running, then having to disable it with `sudo wg-quick down [profile]` and then `sudo wg-quick up [profile]`
+**wg-select** is a command-line tool for quickly switching between WireGuard profiles. I created it because I was tired of always having to check which profile is running, then having to disable it with `sudo wg-quick down [profile]` and then enabling the new one with `sudo wg-quick up [new-profile]`
 
 ## Requirements
 
