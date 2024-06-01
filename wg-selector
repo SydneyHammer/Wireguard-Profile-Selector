@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Directory where WireGuard config files are located
+WG_CONF_DIR="/etc/wireguard"
+
+# Get the current active WireGuard interface, if any
+CURRENT_WG=$(wg show interfaces | head -n 1)
+
+# List the config files without the .conf extension and without the preceding path, sorted alphabetically
+CONFIGS=$(sudo find "$WG_CONF_DIR" -maxdepth 1 -name "*.conf" | sed -e "s|$WG_CONF_DIR/||" -e 's|\.conf$||' | sort)
+
+# Use fzf to select a WireGuard profile
+SELECTED_INTERFACE=$(echo "$CONFIGS" | fzf --bind='j:down,k:up')
+
+# Check if a profile was selected
+if [ -z "$SELECTED_INTERFACE" ]; then
+    echo "No profile selected. Exiting."
+    exit 1
+fi
+
+# Disable the current WireGuard profile, if any
+if [ -n "$CURRENT_WG" ]; then
+    echo "Disabling current WireGuard interface: $CURRENT_WG"
+    sudo wg-quick down "$CURRENT_WG"
+fi
+
+# Enable the selected WireGuard profile
+echo "Enabling selected WireGuard interface: $SELECTED_INTERFACE"
+sudo wg-quick up "$SELECTED_INTERFACE"
+
+echo "WireGuard profile switched to: $SELECTED_INTERFACE"
+
