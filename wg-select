@@ -10,7 +10,7 @@ CURRENT_WG=$(wg show interfaces | head -n 1)
 CONFIGS=$(sudo find "$WG_CONF_DIR" -maxdepth 1 -name "*.conf" | sed -e "s|$WG_CONF_DIR/||" -e 's|\.conf$||' | sort)
 
 # Use fzf to select a WireGuard profile
-SELECTED_INTERFACE=$(echo "$CONFIGS" | fzf --bind='j:down,k:up')
+SELECTED_INTERFACE=$(echo "$CONFIGS" | fzf --header="  Current Profile: $CURRENT_WG")
 
 # Check if a profile was selected
 if [ -z "$SELECTED_INTERFACE" ]; then
